@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة بوتات Minecraft - Aternos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 منصة بوتات Minecraft</h1>
+            <p>إنشاء وإدارة بوتات للعبة على خوادم Aternos</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab('dashboard')">لوحة التحكم</button>
+            <button class="tab-btn" onclick="switchTab('create-bot')">إنشاء بوت</button>
+            <button class="tab-btn" onclick="switchTab('bedrock')">Bedrock Edition</button>
+            <button class="tab-btn" onclick="switchTab('settings')">الإعدادات</button>
+        </nav>
+
+        <!-- لوحة التحكم -->
+        <section id="dashboard" class="tab-content active">
+            <h2>لوحة التحكم</h2>
+            <div class="bots-grid" id="botsGrid">
+                <p>لا توجد بوتات حالياً</p>
+            </div>
+        </section>
+
+        <!-- إنشاء بوت -->
+        <section id="create-bot" class="tab-content">
+            <h2>إنشاء بوت جديد</h2>
+            <form id="botForm">
+                <div class="form-group">
+                    <label for="botName">اسم البوت:</label>
+                    <input type="text" id="botName" placeholder="أدخل اسم البوت" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="serverIP">عنوان IP الخادم:</label>
+                    <input type="text" id="serverIP" placeholder="مثال: server.aternos.org" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="botType">نوع البوت:</label>
+                    <select id="botType" required>
+                        <option value="auto-restart">إعادة تشغيل تلقائي</option>
+                        <option value="player-join">استقبال اللاعبين</option>
+                        <option value="moderator">مشرف تلقائي</option>
+                        <option value="farm-bot">بوت جمع الموارد</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="edition">إصدار Minecraft:</label>
+                    <select id="edition" required>
+                        <option value="java">Java Edition</option>
+                        <option value="bedrock">Bedrock Edition</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="uptime">وقت التشغيل (ساعات):</label>
+                    <input type="number" id="uptime" min="1" max="24" value="24" required>
+                </div>
+
+                <button type="submit" class="btn-primary">✨ إنشاء البوت</button>
+            </form>
+        </section>
+
+        <!-- Bedrock Edition -->
+        <section id="bedrock" class="tab-content">
+            <h2>Bedrock Edition</h2>
+            <p>إعدادات خاصة لإصدار Bedrock من Minecraft</p>
+            <div class="bedrock-settings">
+                <label>
+                    <input type="checkbox" id="bedrockAutoJoin">
+                    دخول تلقائي للخادم
+                </label>
+                <label>
+                    <input type="checkbox" id="bedrockAutoPlay">
+                    تشغيل تلقائي للعبة
+                </label>
+            </div>
+        </section>
+
+        <!-- الإعدادات -->
+        <section id="settings" class="tab-content">
+            <h2>الإعدادات</h2>
+            <div class="settings-group">
+                <h3>إعدادات الخادم</h3>
+                <label>
+                    <input type="text" placeholder="مفتاح API للخادم" id="apiKey">
+                </label>
+                <button class="btn-secondary">حفظ الإعدادات</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
